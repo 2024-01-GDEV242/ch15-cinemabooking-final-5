@@ -7,6 +7,7 @@
  */
 public class Seat
 {
+    private boolean availablity;
     /**
      * Constructor for objects of class Seat
      */

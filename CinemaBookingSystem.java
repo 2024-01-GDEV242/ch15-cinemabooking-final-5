@@ -19,7 +19,7 @@ public class CinemaBookingSystem
     {
         theaters = new ArrayList<>();
         customers = new ArrayList<>();
-        theaters.add(new Theater());        
+        //theaters.add(new Theater());        
     }
     public void addCustomer(int phoneNumber)
     {
