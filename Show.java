@@ -7,7 +7,6 @@
  */
 public class Show
 {
-    private Schedule schedule;
     /**
      * Constructor for objects of class Show
      */
