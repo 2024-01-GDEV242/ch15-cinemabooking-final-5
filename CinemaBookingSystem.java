@@ -10,7 +10,7 @@ public class CinemaBookingSystem
 {
     // instance variables - replace the example below with your own
     private ArrayList<Theater> theaters;
-    private Customer testCustomer;
+    private ArrayList<Customer> customers;
 
     /**
      * Constructor for objects of class CinemaBookingSystem
@@ -18,7 +18,11 @@ public class CinemaBookingSystem
     public CinemaBookingSystem()
     {
         theaters = new ArrayList<>();
-        testCustomer = new Customer();
+        customers = new ArrayList<>();
         theaters.add(new Theater());        
+    }
+    public void addCustomer(int phoneNumber)
+    {
+        customers.add(new Customer(phoneNumber));
     }
 }

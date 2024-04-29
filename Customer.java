@@ -11,7 +11,12 @@ public class Customer
     /**
      * Constructor for objects of class Customer
      */
-    public Customer()
+    public Customer(int phoneNumber)
     {   
+        this.phoneNumber = phoneNumber;
+    }
+    public void createBooking()
+    {
+        
     }
 }

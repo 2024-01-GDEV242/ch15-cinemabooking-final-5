@@ -10,6 +10,7 @@ public class Booking
     /**
      * Constructor for objects of class Booking
      */
+    private Theater theater;
     public Booking()
     {
     }
