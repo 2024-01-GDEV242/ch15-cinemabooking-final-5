@@ -6,11 +6,12 @@
  */
 public class Customer
 {
+    private Booking book;
+    private int phoneNumber;
     /**
      * Constructor for objects of class Customer
      */
     public Customer()
-    {
-        
+    {   
     }
 }

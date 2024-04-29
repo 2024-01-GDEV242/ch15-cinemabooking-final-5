@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * Write a description of class CinemaBookingSystem here.
@@ -8,25 +9,16 @@
 public class CinemaBookingSystem
 {
     // instance variables - replace the example below with your own
-    
+    private ArrayList<Theater> theaters;
+    private Customer testCustomer;
 
     /**
      * Constructor for objects of class CinemaBookingSystem
      */
     public CinemaBookingSystem()
     {
-        // initialise instance variables
-        
+        theaters = new ArrayList<>();
+        testCustomer = new Customer();
+        theaters.add(new Theater());        
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    // public int sampleMethod(int y)
-    // {
-
-    // }
 }
