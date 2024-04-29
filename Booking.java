@@ -10,12 +10,19 @@ public class Booking
     /**
      * Constructor for objects of class Booking
      */
-    private Theater theater;
+    private Seat theSeat;
     private Show theShow;
-    private Customer theBooker;
+    private Customer theCustomer;
+    private int theDate;
+    private ShowTime theShowTime;
 
-    public Booking()
+    public Booking(Customer customer,Show show,Seat seat,int date,ShowTime showTime)
     {
+        theCustomer = customer;
+        theShow = show;
+        theSeat = seat;
+        theDate = date;
+        theShowTime = showTime;
     }
 
 }

@@ -9,22 +9,37 @@ import java.util.ArrayList;
 public class Theater
 {
     // instance variables - replace the example below with your own
-    private int col;
     private int row;
+    private int col;
     private ArrayList<Seat> seats;
-    private ArrayList<Show> shows;
+    //private ArrayList<Show> shows;
 
     /**
      * Constructor for objects of class Theater
      */
-    public Theater(int col, int row)
+    public Theater(int row, int col)
     {
-        this.col = col;
+        seats = new ArrayList<>();
         this.row = row;
+        this.col = col;
     }
     private void createSeats()
     {
-        //make the seats
+        for (int x =0 ;x < row ; x++)
+        {
+            for (int y =0; y <col; y ++)
+            {   
+               seats.add(new Seat((row))); 
+            }
+        }
     }
-
+    public boolean checkAvailablity(int row, int col)
+    {
+        //test if seat is available
+        return true;
+    }
+    public Seat getSeat(int row,int col)
+    {
+        return seats.get(0);
+    }
 }
