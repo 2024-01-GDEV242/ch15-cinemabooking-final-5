@@ -8,12 +8,10 @@ import java.util.ArrayList;
  */
 public class CinemaBookingSystem
 {
-    // instance variables - replace the example below with your own
     private ArrayList<Schedule> schedules;
     //private ArrayList<Theater> theaters;
     private ArrayList<Customer> customers;
     private ArrayList<Booking> bookings;
-
     /**
      * Constructor for objects of class CinemaBookingSystem
      */
@@ -26,10 +24,25 @@ public class CinemaBookingSystem
         schedules.add(new Schedule());
         //theaters.add(new Theater());        
     }
+    /**
+     * adds a Customer to the booking systems list of customers
+     * 
+     * @param customer  the customer to be added 
+     */
     public void addCustomer(Customer customer)
     {
         customers.add(customer);
     }
+    /**
+     * Creates a booking for a customer and make the seat unavailable for future bookings
+     * 
+     * @param  customerIndex the customer at an index within the booking system that will be assigned to the bookings
+     * @param  row the row that the seats will be in
+     * @param  col the colum of the seat to be booked
+     * @param  date the day of the showing which is the index of the schedules
+     * @param  showName the name of the movie 
+     * @param  startTime  the time of the movie
+     */
     public void createBooking(int customerIndex,int row,int col,int date,String showName,int startTime)
     {
         if(schedules.get(date).getShow(showName,startTime).getTheater().checkAvailablity(col,row)) //checks availibily of the seats
@@ -38,6 +51,18 @@ public class CinemaBookingSystem
             schedules.get(date).getShow(showName,startTime).getTheater().getSeat(row,col).booked(); // makes seat unavilible
         }
     }
+    /**
+     * Creates a set of bookings starting from one seat and continuing for however many is requested assuming their is room
+     *
+     * @param  customerIndex the customer at an index within the booking system that will be assigned to the bookings
+     * @param  numberOfBookings the number or requested seats
+     * @param  row the row that the seats will be in
+     * @param  colStart the first sit in the row that is to be booked
+     * @param  date the day of the showing which is the index of the schedules
+     * @param  showName the name of the movie 
+     * @param  startTime  the time of the movie
+     * 
+     */
     public void createRowBooking(int customerIndex,int numberOfBookings,int row, int colStart,int date,String showName,int startTime)
     {
         for (int x = 0; x <numberOfBookings; x ++)
@@ -45,6 +70,11 @@ public class CinemaBookingSystem
             createBooking(customerIndex,row,colStart+x,date,showName,startTime);
         }
     }
+    /**
+     * Cancles all previously made bookings of a given customer
+     *
+     * @param  Customer is the customer who's canceling the bookings
+     */
     public void cancelBooking(Customer customer)
     {
         for (int x =0; x < bookings.size(); x++)

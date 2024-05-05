@@ -23,6 +23,9 @@ public class Theater
         this.col = col;
         createSeats();
     }
+    /**
+     * makes seats in the theater
+     */
     private void createSeats()
     {
         for (int x =0 ;x < row ; x++)
@@ -33,6 +36,12 @@ public class Theater
             }
         }
     }
+    /**
+     * checks if a specific seat is available to be booked or not
+     * 
+     * @param row the specific row of the seat to be tested
+     * @param col the specific colum of the seat to be tested
+     */
     public boolean checkAvailablity(int row, int col)
     {
         //test if seat is available
@@ -46,6 +55,12 @@ public class Theater
         }
         return availability;
     }
+    /**
+     * returns a specific seat from its array of seats
+     * 
+     * @param row the specific row of the seat 
+     * @param col the specific colum of the seat
+     */
     public Seat getSeat(int row,int col)
     {
         Seat theSeat;

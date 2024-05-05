@@ -18,6 +18,7 @@ public class ShowTime
         this.startTime = startTime;
         this.endTime = endTime;
     }
+    
     public int getStartTime()
     {
         return startTime;

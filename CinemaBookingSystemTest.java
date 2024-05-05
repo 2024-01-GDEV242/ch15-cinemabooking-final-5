@@ -67,7 +67,18 @@ public class CinemaBookingSystemTest
         cinemaBo1.createBooking(0, 1, 1, 0, "lotr", 12);
         cinemaBo1.cancelBooking(customer1);
     }
+
+    @Test
+    public void AddCustomer()
+    {
+        CinemaBookingSystem cinemaBo1 = new CinemaBookingSystem();
+        Customer customer1 = new Customer(12, 123455);
+        cinemaBo1.addCustomer(customer1);
+        Customer customer2 = new Customer(123, 12345);
+        cinemaBo1.addCustomer(customer2);
+    }
 }
+
 
 
 

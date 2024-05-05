@@ -19,14 +19,23 @@ public class Show
         this.movie = name;
         room = new Theater (6,6);
     }
+    /**
+     * returns the theater
+     */
     public Theater getTheater()
     {
         return room;
     }
+    /**
+     * returns the showTime object
+     */
     public ShowTime getShowTime()
     {
         return showTime;
     }
+    /**
+     * returns the movies name
+     */
     public String getName()
     {
         return movie;

@@ -19,22 +19,37 @@ public class Seat
         this.col = col;
         availability = true;
     }
+    /**
+     * tells if the seat is available or not
+     */
     public boolean getAvailability()
     {
         return availability;
     }
+    /**
+     * Marks the seat as booked
+     */
     public void booked()
     {
         availability = false;
     }
+    /**
+     * make it so the seat is available again
+     */
     public void unBooked()
     {
         availability = true;
     }
+    /**
+     * gets the row of this seat in its theater
+     */
     public int getRow()
     {
         return row;
     }
+    /**
+     * gets the col of this seat in its theater
+     */
     public int getCol()
     {
         return col;

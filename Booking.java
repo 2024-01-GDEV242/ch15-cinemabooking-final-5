@@ -7,14 +7,14 @@
  */
 public class Booking
 {
-    /**
-     * Constructor for objects of class Booking
-     */
     private Seat theSeat;
     private Show theShow;
     private Customer theCustomer;
     private int theDate;
     private ShowTime theShowTime;
+    /**
+     * Constructor for objects of class Booking
+     */
 
     public Booking(Customer customer,Show show,Seat seat,int date)
     {
@@ -24,10 +24,16 @@ public class Booking
         theDate = date;
         theShowTime = show.getShowTime();
     }
+    /**
+     * Returns the seat of a booking
+     */
     public Seat getTheSeat()
     {
         return theSeat;
     }
+    /**
+     * Returns the customer of a booking
+     */
     public Customer getTheCustomer()
     {
         return theCustomer;

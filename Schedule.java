@@ -8,7 +8,6 @@ import java.util.ArrayList;
  */
 public class Schedule
 {
-    // instance variables - replace the example below with your own
     private ArrayList<Show> shows;
     private ArrayList<ShowTime> showTimes;
     //private ArrayList<Theater> theaters;
@@ -34,7 +33,12 @@ public class Schedule
         createShows("LOTR");
         createShows("Kong");
     }
-    private void createShows(String showName)
+    /**
+     * creats a show for each showtime available
+     * 
+     * @param showName name of the show to be created
+     */
+    public void createShows(String showName)
     {
         for (int x = 0; x < showTimes.size(); x ++)
             {
