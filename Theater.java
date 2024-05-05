@@ -3,12 +3,11 @@ import java.util.ArrayList;
 /**
  * Write a description of class Theater here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @authors Steven Coss &
+ * @version 5.5.2024
  */
 public class Theater
 {
-    // instance variables - replace the example below with your own
     private int row;
     private int col;
     private ArrayList<Seat> seats;
@@ -22,6 +21,7 @@ public class Theater
         seats = new ArrayList<>();
         this.row = row;
         this.col = col;
+        createSeats();
     }
     private void createSeats()
     {
@@ -29,17 +29,34 @@ public class Theater
         {
             for (int y =0; y <col; y ++)
             {   
-               seats.add(new Seat((row))); 
+               seats.add(new Seat(x,y)); 
             }
         }
     }
     public boolean checkAvailablity(int row, int col)
     {
         //test if seat is available
-        return true;
+        boolean availability = false;
+        for (int x=0; x< seats.size(); x++)
+        {
+            if (seats.get(x).getRow() == row && seats.get(x).getCol() == col)
+            {
+                availability = seats.get(x).getAvailability();
+            }
+        }
+        return availability;
     }
     public Seat getSeat(int row,int col)
     {
-        return seats.get(0);
+        Seat theSeat;
+        for (int x=0; x< seats.size(); x++)
+        {
+            if (seats.get(x).getRow() == row && seats.get(x).getCol() == col)
+            {
+                theSeat = seats.get(x);
+                return theSeat;
+            }
+        }
+        return null;
     }
 }

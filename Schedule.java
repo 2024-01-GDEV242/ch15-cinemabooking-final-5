@@ -3,8 +3,8 @@ import java.util.ArrayList;
 /**
  * Write a description of class Schedule here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @authors Steven Coss &
+ * @version 5.5.2024
  */
 public class Schedule
 {
@@ -31,18 +31,26 @@ public class Schedule
         showTimes.add(new ShowTime(15,17));
         showTimes.add(new ShowTime(18,20));
         showTimes.add(new ShowTime(21,23));
+        createShows("LOTR");
+        createShows("Kong");
     }
-    private void createShows()
+    private void createShows(String showName)
     {
         for (int x = 0; x < showTimes.size(); x ++)
             {
-                shows.add(new Show("LOTR",showTimes.get(x)));
+                shows.add(new Show(showName,showTimes.get(x)));
             }
     }
-    public Show getShow(int index)
+    public Show getShow(String name,int startTime)
     {
-        //gets a show from the arrayList
-        //return shows.get(index);
+        for (int x = 0; x < shows.size(); x ++)
+        {
+            if(shows.get(x).getName().equalsIgnoreCase(name) && shows.get(x).getShowTime().getStartTime() == startTime)
+            {
+                return shows.get(x);
+            }
+        }
+        System.out.println("that show at that time doesn't exisit");
         return null;
     }
 }

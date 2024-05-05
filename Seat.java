@@ -2,31 +2,42 @@
 /**
  * Write a description of class Seat here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @authors Steven Coss &
+ * @version 5.5.2024
  */
 public class Seat
 {
-    private boolean availablity;
+    private boolean availability;
     private int row;
+    private int col;
     /**
      * Constructor for objects of class Seat
      */
-    public Seat(int row)
+    public Seat(int row, int col)
     {
-        availablity = true;
+        this.row = row;
+        this.col = col;
+        availability = true;
     }
-    public boolean isFree()
+    public boolean getAvailability()
     {
-        return availablity;
+        return availability;
     }
     public void booked()
     {
-        availablity = false;
+        availability = false;
+    }
+    public void unBooked()
+    {
+        availability = true;
     }
     public int getRow()
     {
         return row;
+    }
+    public int getCol()
+    {
+        return col;
     }
     
 }

@@ -3,8 +3,8 @@ import java.util.ArrayList;
 /**
  * Write a description of class CinemaBookingSystem here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @authors Steven Coss &
+ * @version 5.5.2024
  */
 public class CinemaBookingSystem
 {
@@ -26,16 +26,35 @@ public class CinemaBookingSystem
         schedules.add(new Schedule());
         //theaters.add(new Theater());        
     }
-    public void addCustomer(int phoneNumber)
+    public void addCustomer(Customer customer)
     {
-        customers.add(new Customer(phoneNumber));
+        customers.add(customer);
     }
-    public void createBooking(int customerIndex,int row,int col,int date)
+    public void createBooking(int customerIndex,int row,int col,int date,String showName,int startTime)
     {
-        if(schedules.get(date).getShow(0).getTheater().checkAvailablity(col,row)) //checks availibily of the seats
-        {                               //get customer                  get the show                get the seats                                            get date    get the timeslot
-            bookings.add(new Booking(customers.get(customerIndex),schedules.get(date).getShow(0),schedules.get(date).getShow(0).getTheater().getSeat(row,col),date,schedules.get(date).getShow(0).getShowTime()));
-            schedules.get(date).getShow(0).getTheater().getSeat(row,col).booked(); // makes seat unavilible
+        if(schedules.get(date).getShow(showName,startTime).getTheater().checkAvailablity(col,row)) //checks availibily of the seats
+        {                               //get customer                  get the show                                get the seats                                                               get date           
+            bookings.add(new Booking(customers.get(customerIndex),schedules.get(date).getShow(showName,startTime),schedules.get(date).getShow(showName,startTime).getTheater().getSeat(row,col),date));
+            schedules.get(date).getShow(showName,startTime).getTheater().getSeat(row,col).booked(); // makes seat unavilible
         }
     }
+    public void createRowBooking(int customerIndex,int numberOfBookings,int row, int colStart,int date,String showName,int startTime)
+    {
+        for (int x = 0; x <numberOfBookings; x ++)
+        {
+            createBooking(customerIndex,row,colStart+x,date,showName,startTime);
+        }
+    }
+    public void cancelBooking(Customer customer)
+    {
+        for (int x =0; x < bookings.size(); x++)
+        {
+            if(customer == bookings.get(x).getTheCustomer())
+            {
+                bookings.get(x).getTheSeat().unBooked();
+                bookings.remove(x);
+            }
+        }
+    }
+        
 }

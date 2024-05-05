@@ -2,8 +2,8 @@
 /**
  * Write a description of class Booking here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @authors Steven Coss &
+ * @version 5.5.2024
  */
 public class Booking
 {
@@ -16,13 +16,21 @@ public class Booking
     private int theDate;
     private ShowTime theShowTime;
 
-    public Booking(Customer customer,Show show,Seat seat,int date,ShowTime showTime)
+    public Booking(Customer customer,Show show,Seat seat,int date)
     {
         theCustomer = customer;
         theShow = show;
         theSeat = seat;
         theDate = date;
-        theShowTime = showTime;
+        theShowTime = show.getShowTime();
+    }
+    public Seat getTheSeat()
+    {
+        return theSeat;
+    }
+    public Customer getTheCustomer()
+    {
+        return theCustomer;
     }
 
 }

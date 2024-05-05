@@ -2,15 +2,14 @@
 /**
  * Write a description of class ShowTime here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @authors Steven Coss &
+ * @version 5.5.2024
  */
 public class ShowTime
 {
     // instance variables - replace the example below with your own
     private int startTime;
     private int endTime;
-
     /**
      * Constructor for objects of class ShowTime
      */
@@ -18,7 +17,6 @@ public class ShowTime
     {
         this.startTime = startTime;
         this.endTime = endTime;
-
     }
     public int getStartTime()
     {
