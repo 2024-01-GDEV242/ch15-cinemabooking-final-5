@@ -33,14 +33,18 @@ public class CinemaBookingSystem
         // Create theaters with different numbers of seats and rows
         theaters.add(new Theater(1, 40, 5)); // Theater 1 with 40 seats, 5 rows
         theaters.add(new Theater(2, 60, 6)); // Theater 2 with 60 seats, 6 rows
-        theaters.add(new Theater(3, 50, 5)); // Theater 3 with 50 seats, 5 rows
-        theaters.add(new Theater(4, 70, 7)); // Theater 4 with 70 seats, 7 rows
-        theaters.add(new Theater(5, 80, 8)); // Theater 5 with 80 seats, 8 rows
+        theaters.add(new Theater(3, 70, 7)); // Theater 3 with 70 seats, 7 rows
+        theaters.add(new Theater(4, 50, 5)); // Theater 4 with 50 seats, 5 rows
+        theaters.add(new Theater(5, 90, 6)); // Theater 5 with 90 seats, 6 rows
     }
+    
+    
     public void addCustomer(int phoneNumber)
     {
         customers.add(new Customer(phoneNumber));
     }
+    
+    
     public void createBooking(int customerIndex,int row,int col,int date)
     {
         if(schedules.get(date).getShow(0).getTheater().checkAvailablity(col,row)) //checks availibily of the seats
