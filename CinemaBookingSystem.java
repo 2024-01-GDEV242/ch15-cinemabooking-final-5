@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -25,10 +24,9 @@ public class CinemaBookingSystem {
         this.bookings = new ArrayList<>();
         this.customers = new ArrayList<>();
         this.schedules = new ArrayList<>();
-        this.theaters = new ArrayList<>();
+        this.theaters = initializeTheaters();
         this.movies = new ArrayList<>();
-
-        initializeTheaters();
+        
         initializeMovies();
     }
     
@@ -62,8 +60,14 @@ public class CinemaBookingSystem {
                     }
                     break;
                 case 2: 
-                    
-                
+                   System.out.print("Enter day to view schedule (Saturday or Sunday) or 'all' for all dates: ");
+                    String input = scanner.nextLine().trim();
+                    if ("all".equalsIgnoreCase(input)) {
+                        system.showAllSchedules();
+                    } else {
+                        system.displaySchedulesByDay(input);
+                    }
+                    break;
                 case 3:
                     // Placeholder for booking creation
                     System.out.println("Booking creation not implemented.");
@@ -83,13 +87,15 @@ public class CinemaBookingSystem {
         }
     }
     
-    private void initializeTheaters() 
+    private ArrayList<Theater> initializeTheaters() 
     {
+        ArrayList<Theater> theaters = new ArrayList<>();
         theaters.add(new Theater(1, 40, 5));
         theaters.add(new Theater(2, 60, 6));
         theaters.add(new Theater(3, 70, 7));
         theaters.add(new Theater(4, 50, 5));
         theaters.add(new Theater(5, 90, 6));
+        return theaters; // Return the list of initialized theaters
     }
 
     private void initializeMovies() 
@@ -104,7 +110,96 @@ public class CinemaBookingSystem {
         movies.add(new Movie("Godzilla x Kong: The New Empire"));
     }
     
-    public void addCustomer(String name, String phoneNumber) {
+    private void createSchedules() 
+    {
+        ArrayList<Theater> theaters = initializeTheaters(); // Make sure theaters are initialized
+        Schedule saturdaySchedule = new Schedule(theaters, "Saturday");
+    
+        // Add shows to Saturday schedule
+        saturdaySchedule.addShow("Abigail", new ShowTime(11, 30, 12, 30), theaters.get(0));
+        saturdaySchedule.addShow("Abigail", new ShowTime(18, 00, 19, 00), theaters.get(4));
+        saturdaySchedule.addShow("Abigail", new ShowTime(20, 30, 21, 30), theaters.get(0));
+
+        saturdaySchedule.addShow("Challengers", new ShowTime(9, 00, 10, 00), theaters.get(0));
+        saturdaySchedule.addShow("Challengers", new ShowTime(14, 00, 15, 00), theaters.get(4));
+        saturdaySchedule.addShow("Challengers", new ShowTime(16, 30, 17, 30), theaters.get(2));
+        saturdaySchedule.addShow("Challengers", new ShowTime(20, 30, 21, 30), theaters.get(2));
+
+        saturdaySchedule.addShow("Civil War", new ShowTime(9, 00, 10, 00), theaters.get(2));
+        saturdaySchedule.addShow("Civil War", new ShowTime(11, 30, 12, 30), theaters.get(1));
+        saturdaySchedule.addShow("Civil War", new ShowTime(14, 00, 15, 00), theaters.get(2));
+        saturdaySchedule.addShow("Civil War", new ShowTime(16, 30, 17, 30), theaters.get(4));
+        saturdaySchedule.addShow("Civil War", new ShowTime(18, 00, 19, 00), theaters.get(1));
+
+        saturdaySchedule.addShow("Godzilla x Kong: The New Empire", new ShowTime(11, 30, 12, 30), theaters.get(3));
+        saturdaySchedule.addShow("Godzilla x Kong: The New Empire", new ShowTime(14, 00, 15, 00), theaters.get(0));
+        saturdaySchedule.addShow("Godzilla x Kong: The New Empire", new ShowTime(20, 30, 21, 30), theaters.get(1));
+
+        saturdaySchedule.addShow("Kung Fu Panda 4", new ShowTime(11, 30, 12, 30), theaters.get(2));
+        saturdaySchedule.addShow("Kung Fu Panda 4", new ShowTime(16, 30, 17, 30), theaters.get(0));
+        saturdaySchedule.addShow("Kung Fu Panda 4", new ShowTime(18, 00, 19, 00), theaters.get(0));
+
+        saturdaySchedule.addShow("Spy x Family Code: White", new ShowTime(9, 00, 10, 00), theaters.get(3));
+        saturdaySchedule.addShow("Spy x Family Code: White", new ShowTime(11, 30, 12, 30), theaters.get(4));
+        saturdaySchedule.addShow("Spy x Family Code: White", new ShowTime(14, 00, 15, 00), theaters.get(3));
+        saturdaySchedule.addShow("Spy x Family Code: White", new ShowTime(16, 30, 17, 30), theaters.get(1));
+        saturdaySchedule.addShow("Spy x Family Code: White", new ShowTime(18, 00, 19, 00), theaters.get(2));
+
+        saturdaySchedule.addShow("Star Wars Episode I: The Phantom Menace", new ShowTime(9, 00, 10, 00), theaters.get(4));
+        saturdaySchedule.addShow("Star Wars Episode I: The Phantom Menace", new ShowTime(16, 30, 17, 30), theaters.get(3));
+        saturdaySchedule.addShow("Star Wars Episode I: The Phantom Menace", new ShowTime(20, 30, 21, 30), theaters.get(4));
+
+        saturdaySchedule.addShow("Unsung Hero", new ShowTime(9, 00, 10, 00), theaters.get(1));
+        saturdaySchedule.addShow("Unsung Hero", new ShowTime(14, 00, 15, 00), theaters.get(1));
+        saturdaySchedule.addShow("Unsung Hero", new ShowTime(20, 30, 21, 30), theaters.get(3));
+
+        schedules.add(saturdaySchedule);
+        
+        Schedule sundaySchedule = new Schedule(theaters, "Sunday");
+
+        // Add shows to Sunday schedule
+        sundaySchedule.addShow("Abigail", new ShowTime(9, 00, 10, 00), theaters.get(4));
+        sundaySchedule.addShow("Abigail", new ShowTime(11, 30, 12, 30), theaters.get(2));
+        sundaySchedule.addShow("Abigail", new ShowTime(18, 00, 19, 00), theaters.get(4));
+        sundaySchedule.addShow("Abigail", new ShowTime(20, 30, 21, 30), theaters.get(2));
+    
+        sundaySchedule.addShow("Challengers", new ShowTime(9, 00, 10, 00), theaters.get(1));
+        sundaySchedule.addShow("Challengers", new ShowTime(16, 30, 17, 30), theaters.get(2));
+        sundaySchedule.addShow("Challengers", new ShowTime(18, 00, 19, 00), theaters.get(2));
+    
+        sundaySchedule.addShow("Civil War", new ShowTime(9, 00, 10, 00), theaters.get(0));
+        sundaySchedule.addShow("Civil War", new ShowTime(11, 30, 12, 30), theaters.get(3));
+        sundaySchedule.addShow("Civil War", new ShowTime(14, 00, 15, 00), theaters.get(0));
+        sundaySchedule.addShow("Civil War", new ShowTime(16, 30, 17, 30), theaters.get(4));
+        sundaySchedule.addShow("Civil War", new ShowTime(18, 00, 19, 00), theaters.get(3));
+    
+        sundaySchedule.addShow("Godzilla x Kong: The New Empire", new ShowTime(14, 00, 15, 00), theaters.get(2));
+        sundaySchedule.addShow("Godzilla x Kong: The New Empire", new ShowTime(16, 30, 17, 30), theaters.get(1));
+        sundaySchedule.addShow("Godzilla x Kong: The New Empire", new ShowTime(20, 30, 21, 30), theaters.get(0));
+    
+        sundaySchedule.addShow("Kung Fu Panda 4", new ShowTime(11, 30, 12, 30), theaters.get(0));
+        sundaySchedule.addShow("Kung Fu Panda 4", new ShowTime(14, 00, 15, 00), theaters.get(4));
+        sundaySchedule.addShow("Kung Fu Panda 4", new ShowTime(16, 30, 17, 30), theaters.get(3));
+        sundaySchedule.addShow("Kung Fu Panda 4", new ShowTime(18, 00, 19, 00), theaters.get(1));
+    
+        sundaySchedule.addShow("Spy x Family Code: White", new ShowTime(9, 00, 10, 00), theaters.get(2));
+        sundaySchedule.addShow("Spy x Family Code: White", new ShowTime(11, 30, 12, 30), theaters.get(1));
+        sundaySchedule.addShow("Spy x Family Code: White", new ShowTime(14, 00, 15, 00), theaters.get(1));
+        sundaySchedule.addShow("Spy x Family Code: White", new ShowTime(18, 00, 19, 00), theaters.get(0));
+    
+        sundaySchedule.addShow("Star Wars Episode I: The Phantom Menace", new ShowTime(11, 30, 12, 30), theaters.get(4));
+        sundaySchedule.addShow("Star Wars Episode I: The Phantom Menace", new ShowTime(16, 30, 17, 30), theaters.get(0));
+        sundaySchedule.addShow("Star Wars Episode I: The Phantom Menace", new ShowTime(20, 30, 21, 30), theaters.get(4));
+    
+        sundaySchedule.addShow("Unsung Hero", new ShowTime(9, 00, 10, 00), theaters.get(3));
+        sundaySchedule.addShow("Unsung Hero", new ShowTime(14, 00, 15, 00), theaters.get(3));
+        sundaySchedule.addShow("Unsung Hero", new ShowTime(20, 30, 21, 30), theaters.get(3));
+    
+        schedules.add(sundaySchedule);
+    }
+        
+    public void addCustomer(String name, String phoneNumber) 
+    {
         Customer customer = new Customer(name, phoneNumber);
         customers.add(customer);
     }
@@ -131,29 +226,71 @@ public class CinemaBookingSystem {
         }
     }
 
-    public void createRowBooking(int customerIndex, int numberOfBookings, int row, int colStart, LocalDate date, String showName, LocalTime startTime) {
-        for (int i = 0; i < numberOfBookings; i++) {
-            createBooking(customerIndex, row, colStart + i, date, showName, startTime);
+    public void showAllSchedules() 
+    {
+        if (schedules.isEmpty()) {
+            System.out.println("No schedules available.");
+        } else {
+            System.out.println("All Available Schedules:");
+            for (Schedule schedule : schedules) {
+                displaySchedule(schedule);
+            }
         }
     }
 
-    public void cancelBooking(Customer customer) {
-        bookings.removeIf(booking -> {
-            if (booking.getTheCustomer().equals(customer)) {
-                booking.getTheSeat().setAvailable(true);
-                return true;
+    private void displaySchedule(Schedule schedule) 
+    {
+        System.out.println("\nSchedule for " + schedule.getDate() + ":");
+        ArrayList<Show> shows = schedule.getShows();
+        if (shows.isEmpty()) {
+            System.out.println("No shows available on this date.");
+        } else {
+            for (Show show : shows) {
+                String time = show.getShowTime().getStartTime().toString();
+                String movieName = show.getMovieName();
+                String theaterInfo = "Theater " + show.getTheater().getId();
+                System.out.println(movieName + " at " + time + " in " + theaterInfo);
             }
-            return false;
-        });
+        }
     }
     
-    private Schedule findScheduleByDate(LocalDate date) 
+    public void displaySchedulesByDay(String dayName) 
     {
-       for (Schedule schedule : schedules) {
-           if (schedule.getDate().equals(date)) { 
-               return schedule;
-           }
-       }
-       return null; // No schedule found for the given date
+        boolean found = false;
+        dayName = dayName.trim().toUpperCase();  // Normalize the day name to uppercase for comparison
+
+        for (Schedule schedule : schedules) {
+            String scheduleDay = getDayOfWeekAsString(schedule.getDate());
+            if (scheduleDay.equals(dayName)) {
+                displaySchedule(schedule);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No schedules found for " + dayName);
+        }
+    }
+
+    private String getDayShow(LocalDate date) 
+    {
+        switch (date.getDayOfWeek()) {
+            case MONDAY:
+                return "MONDAY";
+            case TUESDAY:
+                return "TUESDAY";
+            case WEDNESDAY:
+                return "WEDNESDAY";
+            case THURSDAY:
+                return "THURSDAY";
+            case FRIDAY:
+                return "FRIDAY";
+            case SATURDAY:
+                return "SATURDAY";
+            case SUNDAY:
+                return "SUNDAY";
+            default:
+                return "";
+        }
     }
 }

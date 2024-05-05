@@ -43,4 +43,8 @@ public class Theater
     public void addShow(Show show) {
         shows.add(show);
     }
+    
+    public int getId() {
+        return theaterId;
+    }
 }

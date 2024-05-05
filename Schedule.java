@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -12,40 +11,39 @@ public class Schedule {
     private ArrayList<Show> shows;
     private ArrayList<ShowTime> showTimes;
     private ArrayList<Theater> theaters;
-    private LocalDate date;
+    private String day;
     
-    public Schedule(ArrayList<Theater> theaters) 
+    public Schedule(ArrayList<Theater> theaters, String day) 
     {
         this.shows = new ArrayList<>();
         this.theaters = theaters;
-        this.date = date; 
+        this.day = day; 
         initializeShowTimes();
+    }
+    
+    public void addShow(String showName, ShowTime showTime, Theater theater) 
+    {
+        shows.add(new Show(showName, showTime, theater));
     }
     
     private void initializeShowTimes() 
     {
         showTimes = new ArrayList<>();
-        showTimes.add(new ShowTime(9, 0, 10, 50));
-        showTimes.add(new ShowTime(11, 30, 13, 20));
-        showTimes.add(new ShowTime(14, 0, 15, 50));
-        showTimes.add(new ShowTime(16, 30, 18, 20));
-        showTimes.add(new ShowTime(19, 0, 20, 50));
-        showTimes.add(new ShowTime(21, 30, 23, 20));
-        
-        for (int i = 0; i < showTimes.size(); i++) {
-        int theaterIndex = i % theaters.size();
-        createShows("Movie " + (i + 1), showTimes.get(i), theaters.get(theaterIndex));
-        }
+        showTimes.add(new ShowTime(8, 30, 10, 45));
+        showTimes.add(new ShowTime(10, 00, 12, 15));
+        showTimes.add(new ShowTime(12, 30, 14, 45));
+        showTimes.add(new ShowTime(15, 00, 17, 15));
+        showTimes.add(new ShowTime(17, 30, 19, 45));
+        showTimes.add(new ShowTime(20, 00, 22, 15));
     }
     
-    public LocalDate getDate() 
-    {
-        return this.date; // Return the date of the schedule
+    public String getDay() {
+        return day;
     }
-    
-    private void createShows(String showName, ShowTime showTime, Theater theater) 
+       
+    public ArrayList<Show> getShows() 
     {
-        shows.add(new Show(showName, showTime, theater));
+        return shows;
     }
     
     public Show getShow(String name, LocalTime startTime) 
