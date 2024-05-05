@@ -23,6 +23,7 @@ public class Theater
         this.row = row;
         this.col = col;
     }
+    
     private void createSeats()
     {
         for (int x =0 ;x < row ; x++)
@@ -33,11 +34,13 @@ public class Theater
             }
         }
     }
+    
     public boolean checkAvailablity(int row, int col)
     {
         //test if seat is available
         return true;
     }
+    
     public Seat getSeat(int row,int col)
     {
         return seats.get(0);
