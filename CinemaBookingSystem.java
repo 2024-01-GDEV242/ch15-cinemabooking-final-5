@@ -1,5 +1,8 @@
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -60,12 +63,14 @@ public class CinemaBookingSystem {
                     }
                     break;
                 case 2: 
-                   System.out.print("Enter day to view schedule (Saturday or Sunday) or 'all' for all dates: ");
+                    System.out.print("Enter day to view schedule (Saturday or Sunday) or 'all' for all dates: ");
                     String input = scanner.nextLine().trim();
                     if ("all".equalsIgnoreCase(input)) {
                         system.showAllSchedules();
-                    } else {
+                    } else if ("Saturday".equalsIgnoreCase(input) || "Sunday".equalsIgnoreCase(input)) {
                         system.displaySchedulesByDay(input);
+                    } else {
+                        System.out.println("Invalid input. Please enter either 'Saturday', 'Sunday', or 'all'.");
                     }
                     break;
                 case 3:
@@ -204,28 +209,6 @@ public class CinemaBookingSystem {
         customers.add(customer);
     }
 
-    public void createBooking(int customerIndex, int row, int col, LocalDate date, String showName, LocalTime startTime) 
-    {
-        Schedule schedule = findScheduleByDate(date);
-        if (schedule == null) {
-            System.out.println("No schedule available for this date.");
-            return;
-        }
-
-        Show show = schedule.getShow(showName, startTime);
-        if (show == null || show.getTheater() == null || !show.getTheater().checkAvailability(row, col)) {
-            System.out.println("Seat not available or show does not exist.");
-            return;
-        }
-
-        Seat seat = show.getTheater().getSeat(row, col);
-        if (seat != null && seat.isAvailable()) {
-            seat.setAvailable(false);
-            Booking booking = new Booking(customers.get(customerIndex), show, seat, date);
-            bookings.add(booking);
-        }
-    }
-
     public void showAllSchedules() 
     {
         if (schedules.isEmpty()) {
@@ -240,57 +223,53 @@ public class CinemaBookingSystem {
 
     private void displaySchedule(Schedule schedule) 
     {
-        System.out.println("\nSchedule for " + schedule.getDate() + ":");
+        System.out.println("\n" + schedule.getDay() + " Schedule");
         ArrayList<Show> shows = schedule.getShows();
         if (shows.isEmpty()) {
             System.out.println("No shows available on this date.");
         } else {
+            // Organize shows by movie
+            Map<String, List<Show>> showsByMovie = new HashMap<>();
             for (Show show : shows) {
-                String time = show.getShowTime().getStartTime().toString();
                 String movieName = show.getMovieName();
-                String theaterInfo = "Theater " + show.getTheater().getId();
-                System.out.println(movieName + " at " + time + " in " + theaterInfo);
+                if (!showsByMovie.containsKey(movieName)) {
+                    showsByMovie.put(movieName, new ArrayList<>());
+                }
+                showsByMovie.get(movieName).add(show);
+            }
+    
+            // Print shows for each movie
+            for (String movieName : showsByMovie.keySet()) {
+                System.out.println(movieName);
+                List<Show> movieShows = showsByMovie.get(movieName);
+                StringBuilder showInfo = new StringBuilder();
+                for (Show show : movieShows) {
+                    String time = show.getShowTime().getStartTime().toString();
+                    String theaterInfo = "T" + show.getTheater().getId();
+                    showInfo.append(time).append(" ").append(theaterInfo).append(", ");
+                }
+                // Remove the trailing comma and space
+                showInfo.delete(showInfo.length() - 2, showInfo.length());
+                System.out.println(showInfo);
             }
         }
     }
-    
-    public void displaySchedulesByDay(String dayName) 
-    {
+
+    public void displaySchedulesByDay(String dayName) {
         boolean found = false;
         dayName = dayName.trim().toUpperCase();  // Normalize the day name to uppercase for comparison
-
+    
         for (Schedule schedule : schedules) {
-            String scheduleDay = getDayOfWeekAsString(schedule.getDate());
+            String scheduleDay = schedule.getDay().toUpperCase(); // Normalize day to uppercase
             if (scheduleDay.equals(dayName)) {
                 displaySchedule(schedule);
                 found = true;
+                break; // No need to continue searching if found
             }
         }
-
+    
         if (!found) {
             System.out.println("No schedules found for " + dayName);
-        }
-    }
-
-    private String getDayShow(LocalDate date) 
-    {
-        switch (date.getDayOfWeek()) {
-            case MONDAY:
-                return "MONDAY";
-            case TUESDAY:
-                return "TUESDAY";
-            case WEDNESDAY:
-                return "WEDNESDAY";
-            case THURSDAY:
-                return "THURSDAY";
-            case FRIDAY:
-                return "FRIDAY";
-            case SATURDAY:
-                return "SATURDAY";
-            case SUNDAY:
-                return "SUNDAY";
-            default:
-                return "";
         }
     }
 }
