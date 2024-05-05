@@ -1,77 +1,46 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Write a description of class Theater here.
+ * The Theater class manages seating arrangements in a theater, enabling seat bookings and availability checks. 
+ * It is a core component of the cinema booking system, providing efficient control over individual theater seating configurations.
  *
- * @authors Steven Coss &
- * @version 5.5.2024
+ * @author Fhaungfha Suvannakajorn
+ * @version (a version number or a date)
  */
 public class Theater
 {
-    private int row;
-    private int col;
-    private ArrayList<Seat> seats;
-    //private ArrayList<Show> shows;
+    private int theaterId;
+    private List<Seat> seats;
+    private ArrayList<Show> shows;
 
     /**
      * Constructor for objects of class Theater
      */
-    public Theater(int row, int col)
+    public Theater(int theaterId, int numberOfSeats, int rows) 
     {
-        seats = new ArrayList<>();
-        this.row = row;
-        this.col = col;
-        createSeats();
-    }
-    /**
-     * makes seats in the theater
-     */
-    private void createSeats()
-    {
-        for (int x =0 ;x < row ; x++)
-        {
-            for (int y =0; y <col; y ++)
-            {   
-               seats.add(new Seat(x,y)); 
+        this.theaterId = theaterId;
+        this.seats = new ArrayList<>();
+        this.shows = new ArrayList<>();
+        
+        int seatsPerRow = numberOfSeats / rows;
+        for (int row = 1; row <= rows; row++) {
+            for (int seat = 1; seat <= seatsPerRow; seat++) {
+                seats.add(new Seat(seat, row, true)); // Initially, all seats are available
             }
         }
     }
-    /**
-     * checks if a specific seat is available to be booked or not
-     * 
-     * @param row the specific row of the seat to be tested
-     * @param col the specific colum of the seat to be tested
-     */
-    public boolean checkAvailablity(int row, int col)
-    {
-        //test if seat is available
-        boolean availability = false;
-        for (int x=0; x< seats.size(); x++)
-        {
-            if (seats.get(x).getRow() == row && seats.get(x).getCol() == col)
-            {
-                availability = seats.get(x).getAvailability();
-            }
-        }
-        return availability;
+
+    public Seat getSeat(int row, int seatNumber) {
+        return seats.stream().filter(s -> s.getRow() == row && s.getSeatNumber() == seatNumber).findFirst().orElse(null);
     }
-    /**
-     * returns a specific seat from its array of seats
-     * 
-     * @param row the specific row of the seat 
-     * @param col the specific colum of the seat
-     */
-    public Seat getSeat(int row,int col)
-    {
-        Seat theSeat;
-        for (int x=0; x< seats.size(); x++)
-        {
-            if (seats.get(x).getRow() == row && seats.get(x).getCol() == col)
-            {
-                theSeat = seats.get(x);
-                return theSeat;
-            }
-        }
-        return null;
+
+    public boolean checkAvailability(int row, int seatNumber) {
+        Seat seat = getSeat(row, seatNumber);
+        return seat != null && seat.isAvailable();
+    }
+
+    public void addShow(Show show) {
+        shows.add(show);
     }
 }

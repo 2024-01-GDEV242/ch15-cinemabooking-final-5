@@ -1,3 +1,5 @@
+import java.time.LocalTime;
+import java.util.ArrayList;
 
 /**
  * Write a description of class ShowTime here.
@@ -7,23 +9,24 @@
  */
 public class ShowTime
 {
-    // instance variables - replace the example below with your own
-    private int startTime;
-    private int endTime;
+    private LocalTime startTime;
+    private LocalTime endTime;
+    
     /**
      * Constructor for objects of class ShowTime
      */
-    public ShowTime(int startTime, int endTime)
+    public ShowTime(int startHour, int startMinute, int endHour, int endMinute) 
     {
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.startTime = LocalTime.of(startHour, startMinute);
+        this.endTime = LocalTime.of(endHour, endMinute);
     }
     
-    public int getStartTime()
+    public LocalTime getStartTime() 
     {
         return startTime;
     }
-    public int getEndTime()
+
+    public LocalTime getEndTime() 
     {
         return endTime;
     }

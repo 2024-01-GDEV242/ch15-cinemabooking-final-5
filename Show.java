@@ -1,43 +1,32 @@
+import java.time.LocalDateTime; // Import necessary for handling show times if ShowTime is based on LocalDateTime
 
 /**
- * Write a description of class Show here.
+ * The Show class represents a film screening at a specific time in a specific theater.
+ * It is crucial for scheduling and managing screenings in a cinema booking system.
  *
- * @authors Steven Coss &
+ * @authors Steven Coss & Fhaungfha Suvannakajorn
  * @version 5.5.2024
  */
-public class Show
-{
-    private String movie;
-    private Theater room;
+class Show {
+    private String movieName;
     private ShowTime showTime;
-    /**
-     * Constructor for objects of class Show
-     */
-    public Show(String name,ShowTime showTime)
-    {
+    private Theater theater;
+
+    public Show(String movieName, ShowTime showTime, Theater theater) {
+        this.movieName = movieName;
         this.showTime = showTime;
-        this.movie = name;
-        room = new Theater (6,6);
+        this.theater = theater;
     }
-    /**
-     * returns the theater
-     */
-    public Theater getTheater()
-    {
-        return room;
+
+    public String getMovieName() {
+        return movieName;
     }
-    /**
-     * returns the showTime object
-     */
-    public ShowTime getShowTime()
-    {
+
+    public ShowTime getShowTime() {
         return showTime;
     }
-    /**
-     * returns the movies name
-     */
-    public String getName()
-    {
-        return movie;
+
+    public Theater getTheater() {
+        return theater;
     }
 }
