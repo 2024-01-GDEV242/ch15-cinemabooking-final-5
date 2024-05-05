@@ -57,7 +57,15 @@ public class Theater
         return null;
     }
 
-    public void bookSeat(int row, int seatNumber) {
+    /**
+     * This method reserves a seat in the theater. If the seat is available, 
+     * it will be marked as booked, otherwise, an error message will be displayed.
+     * 
+     * @param row The row number of the seat to book.
+     * @param seatNumber The seat number to book.
+     */
+    public void bookSeat(int row, int seatNumber) 
+    {
         Seat seat = getSeat(row, seatNumber);
         if (seat != null && seat.isAvailable()) {
             seat.setAvailable(false);
@@ -67,7 +75,14 @@ public class Theater
         }
     }
 
-    public void cancelBooking(int row, int seatNumber) {
+    /**
+     * This method Cancels a booking for a seat if it is currently booked. If the seat is not booked, an error message is displayed.
+     * 
+     * @param row The row number of the seat for which the booking is to be cancelled.
+     * @param seatNumber The seat number of the booking to cancel.
+     */
+    public void cancelBooking(int row, int seatNumber) 
+    {
         Seat seat = getSeat(row, seatNumber);
         if (seat != null && !seat.isAvailable()) {
             seat.setAvailable(true);
