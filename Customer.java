@@ -6,12 +6,14 @@
  */
 public class Customer
 {
+    private int areaCode;
     private int phoneNumber;
     /**
      * Constructor for objects of class Customer
      */
-    public Customer(int phoneNumber)
+    public Customer(int areaCode, int phoneNumber)
     {   
+        this.areaCode = areaCode;
         this.phoneNumber = phoneNumber;
     }
 }

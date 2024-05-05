@@ -16,7 +16,8 @@ public class Show
     public Show(String name,ShowTime showTime)
     {
         this.showTime = showTime;
-        name = movie;
+        this.movie = name;
+        room = new Theater (5,5);
     }
     public Theater getTheater()
     {
@@ -25,5 +26,9 @@ public class Show
     public ShowTime getShowTime()
     {
         return showTime;
+    }
+    public String getName()
+    {
+        return movie;
     }
 }
