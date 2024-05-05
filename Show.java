@@ -2,8 +2,8 @@
 /**
  * Write a description of class Show here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @authors Steven Coss &
+ * @version 5.5.2024
  */
 public class Show
 {
@@ -17,7 +17,7 @@ public class Show
     {
         this.showTime = showTime;
         this.movie = name;
-        room = new Theater (5,5);
+        room = new Theater (6,6);
     }
     public Theater getTheater()
     {

@@ -2,8 +2,8 @@
 /**
  * Write a description of class Seat here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @authors Steven Coss &
+ * @version 5.5.2024
  */
 public class Seat
 {
@@ -16,6 +16,7 @@ public class Seat
     public Seat(int row, int col)
     {
         this.row = row;
+        this.col = col;
         availability = true;
     }
     public boolean getAvailability()

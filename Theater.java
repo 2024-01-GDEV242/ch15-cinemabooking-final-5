@@ -3,12 +3,11 @@ import java.util.ArrayList;
 /**
  * Write a description of class Theater here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @authors Steven Coss &
+ * @version 5.5.2024
  */
 public class Theater
 {
-    // instance variables - replace the example below with your own
     private int row;
     private int col;
     private ArrayList<Seat> seats;

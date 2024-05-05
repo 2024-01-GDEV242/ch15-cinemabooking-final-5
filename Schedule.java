@@ -3,8 +3,8 @@ import java.util.ArrayList;
 /**
  * Write a description of class Schedule here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @authors Steven Coss &
+ * @version 5.5.2024
  */
 public class Schedule
 {
