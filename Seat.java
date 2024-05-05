@@ -2,7 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Write a description of class Seat here.
+ * The Seat class manages seat bookings and availability in a theater with precise control over individual seat states. 
+ * Each seat has a unique number and availability status indicating whether it is booked or available.
  *
  * @author Fhaungfha Suvannakajorn
  * @version (a version number or a date)
@@ -13,74 +14,49 @@ public class Seat
     private int row;
     private boolean available;
     
+    /**
+     * Constructor for objects of class Seat
+     */
     public Seat(int seatNumber, int row, boolean available) {
         this.seatNumber = seatNumber;
         this.row = row;
         this.available = available;
     }
 
+    /**
+     * Retrieves the seat number of this seat.
+     *
+     * @return the seat number
+     */
     public int getSeatNumber() {
         return seatNumber;
     }
 
+    /**
+     * Retrieves the row number where this seat is located.
+     *
+     * @return the row number
+     */
     public int getRow() {
         return row;
     }
 
+    /**
+     * Checks if the seat is available for booking.
+     *
+     * @return true if the seat is available, false otherwise
+     */
     public boolean isAvailable() {
         return available;
     }
 
+    /**
+     * Sets the availability of this seat. This method is typically used to update the seat's
+     * availability status during booking or cancellation processes.
+     *
+     * @param available true to make the seat available, false to mark it as booked
+     */
     public void setAvailable(boolean available) {
         this.available = available;
-    }
-}
-
-class Theater {
-    private int theaterId;
-    private List<Seat> seats;
-
-    public Theater(int theaterId, int numberOfSeats, int rows) {
-        this.theaterId = theaterId;
-        this.seats = new ArrayList<>();
-        int seatsPerRow = numberOfSeats / rows;
-        for (int row = 1; row <= rows; row++) {
-            for (int seat = 1; seat <= seatsPerRow; seat++) {
-                seats.add(new Seat(seat, row, true)); // Initially, all seats are available
-            }
-        }
-    }
-
-    public List<Seat> getSeats() {
-        return seats;
-    }
-
-    public Seat getSeat(int row, int seatNumber) {
-        for (Seat seat : seats) {
-            if (seat.getRow() == row && seat.getSeatNumber() == seatNumber) {
-                return seat;
-            }
-        }
-        return null;
-    }
-
-    public void bookSeat(int row, int seatNumber) {
-        Seat seat = getSeat(row, seatNumber);
-        if (seat != null && seat.isAvailable()) {
-            seat.setAvailable(false);
-            System.out.println("Seat " + seatNumber + " in row " + row + " is now booked.");
-        } else {
-            System.out.println("Seat " + seatNumber + " in row " + row + " is not available.");
-        }
-    }
-
-    public void cancelBooking(int row, int seatNumber) {
-        Seat seat = getSeat(row, seatNumber);
-        if (seat != null && !seat.isAvailable()) {
-            seat.setAvailable(true);
-            System.out.println("Booking for seat " + seatNumber + " in row " + row + " has been cancelled.");
-        } else {
-            System.out.println("No booking found for seat " + seatNumber + " in row " + row + ".");
-        }
     }
 }

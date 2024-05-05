@@ -50,7 +50,8 @@ public class Theater
     public Seat getSeat(int row, int seatNumber) 
     {
         for (Seat seat : seats) {
-            if (seat.getRow() == row && seat.getSeatNumber() == seatNumber) {
+            if (seat.getRow() == row && seat.getSeatNumber() == seatNumber) 
+            {
                 return seat;
             }
         }
