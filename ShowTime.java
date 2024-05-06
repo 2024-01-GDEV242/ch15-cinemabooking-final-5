@@ -30,4 +30,34 @@ public class ShowTime
     {
         return endTime;
     }
+    
+    /**
+     * Override toString() method to provide a meaningful representation
+     * @Override
+     */
+    public String toString() 
+    {
+        int startHour = startTime.getHour();
+        int startMinute = startTime.getMinute();
+        int endHour = endTime.getHour();
+        int endMinute = endTime.getMinute();
+        
+        String startAMPM = startHour < 12 ? "AM" : "PM";
+        if (startHour == 0) {
+            startHour = 12;
+        } else if (startHour > 12) {
+            startHour -= 12;
+        }
+        String startTimeStr = startHour + ":" + (startMinute < 10 ? "0" : "") + startMinute;
+        
+        String endAMPM = endHour < 12 ? "AM" : "PM";
+        if (endHour == 0) {
+            endHour = 12;
+        } else if (endHour > 12) {
+            endHour -= 12;
+        }
+        String endTimeStr = endHour + ":" + (endMinute < 10 ? "0" : "") + endMinute;
+        
+        return startTimeStr + " " + startAMPM + " - " + endTimeStr + " " + endAMPM;
+    }
 }
