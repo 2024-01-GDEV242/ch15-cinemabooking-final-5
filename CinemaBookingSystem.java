@@ -105,7 +105,7 @@ public class CinemaBookingSystem {
         theaters.add(new Theater(3, 70, 7));
         theaters.add(new Theater(4, 50, 5));
         theaters.add(new Theater(5, 90, 6));
-        return theaters; // Return the list of initialized theaters
+        return theaters;
     }
 
     private void initializeMovies() 
@@ -122,7 +122,7 @@ public class CinemaBookingSystem {
     
     private void createSchedules() 
     {
-        ArrayList<Theater> theaters = initializeTheaters(); // Make sure theaters are initialized
+        ArrayList<Theater> theaters = initializeTheaters();
         Schedule saturdaySchedule = new Schedule(theaters, "Saturday");
     
         // Add shows to Saturday schedule

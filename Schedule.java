@@ -29,12 +29,6 @@ public class Schedule {
     private void initializeShowTimes() 
     {
         showTimes = new ArrayList<>();
-        showTimes.add(new ShowTime(8, 30, 10, 45));
-        showTimes.add(new ShowTime(10, 00, 12, 15));
-        showTimes.add(new ShowTime(12, 30, 14, 45));
-        showTimes.add(new ShowTime(15, 00, 17, 15));
-        showTimes.add(new ShowTime(17, 30, 19, 45));
-        showTimes.add(new ShowTime(20, 00, 22, 15));
     }
     
     public String getDay() {

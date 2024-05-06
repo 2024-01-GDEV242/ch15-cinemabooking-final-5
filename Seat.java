@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * The Seat class manages seat bookings and availability in a theater with precise control over individual seat states. 
  * Each seat has a unique number and availability status indicating whether it is booked or available.
