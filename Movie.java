@@ -3,7 +3,7 @@
  * This minimalist class is designed for use in systems where only the movie's name is required,
  * simplifying interactions and data management.
  *
- * @authors Fhaungfha Suvannakajorn
+ * @authors Steven Coss & Matt Romond & Fhaungfha Suvannakajorn 
  * @version 5.5.2024
  */
 public class Movie {

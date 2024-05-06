@@ -2,8 +2,8 @@
  * The Seat class manages seat bookings and availability in a theater with precise control over individual seat states. 
  * Each seat has a unique number and availability status indicating whether it is booked or available.
  *
- * @author Fhaungfha Suvannakajorn
- * @version (a version number or a date)
+ * @authors Steven Coss & Matt Romond & Fhaungfha Suvannakajorn 
+ * @version 5.5.2024
  */
 public class Seat
 {

@@ -5,8 +5,8 @@ import java.util.List;
  * The Theater class manages seating arrangements in a theater, enabling seat bookings and availability checks. 
  * It is a core component of the cinema booking system, providing efficient control over individual theater seating configurations.
  *
- * @author Fhaungfha Suvannakajorn
- * @version (a version number or a date)
+ * @authors Steven Coss & Matt Romond & Fhaungfha Suvannakajorn 
+ * @version 5.5.2024
  */
 public class Theater
 {

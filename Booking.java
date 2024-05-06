@@ -7,7 +7,7 @@ import java.time.LocalTime;
  * This class is essential for managing the reservations within a cinema booking system, ensuring that each
  * booking is linked to a specific customer, show, and seat.
  *
- * @authors Steven Coss & Fhaungfha Suvannakajorn
+ * @authors Steven Coss & Matt Romond & Fhaungfha Suvannakajorn 
  * @version 5.5.2024
  */
 public class Booking {

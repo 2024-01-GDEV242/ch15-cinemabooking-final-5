@@ -4,7 +4,7 @@ import java.util.ArrayList;
 /**
  * Write a description of class ShowTime here.
  *
- * @authors Steven Coss &
+ * @authors Steven Coss & Matt Romond & Fhaungfha Suvannakajorn 
  * @version 5.5.2024
  */
 public class ShowTime

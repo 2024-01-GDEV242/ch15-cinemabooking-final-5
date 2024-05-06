@@ -4,7 +4,7 @@ import java.time.LocalDateTime; // Import necessary for handling show times if S
  * The Show class represents a film screening at a specific time in a specific theater.
  * It is crucial for scheduling and managing screenings in a cinema booking system.
  *
- * @authors Steven Coss & Fhaungfha Suvannakajorn
+ * @authors Steven Coss & Matt Romond & Fhaungfha Suvannakajorn 
  * @version 5.5.2024
  */
 class Show {
