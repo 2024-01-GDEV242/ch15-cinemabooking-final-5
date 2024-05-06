@@ -306,8 +306,6 @@ public class CinemaBookingSystem {
         return null;
     }
       
-
-    
     private static void handleBooking(CinemaBookingSystem system, Scanner scanner) {
         System.out.println("Creating Booking...");
         System.out.println("Select booking type:");
