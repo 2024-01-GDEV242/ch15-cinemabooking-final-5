@@ -32,7 +32,7 @@ public class ShowTime
     }
     
     /**
-     * Override toString() method to provide a meaningful representation
+     * Override toString() method to provide a representation
      * @Override
      */
     public String toString() 
